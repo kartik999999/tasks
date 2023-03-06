@@ -23,15 +23,8 @@ on:
 jobs:
   user-inputs:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.11"]
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
       - name: Display Input 1
         run: echo "Input-1 is  ${{ github.event.inputs.usrInput1 }}"
       - name: Display Input 2
@@ -41,15 +34,8 @@ jobs:
   perform-operation:
     needs: user-inputs
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.11"]
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
       - name: Multiply
         if: github.event.inputs.operator == 'multiply'
         run: |
