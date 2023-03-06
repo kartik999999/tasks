@@ -4,14 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       usrInput1:
-        type: integer
         description: Take User Input 1
-        default: 'Input 1'
+        default: '0'
         required: true
       usrInput2:
-        type: integer
         description: Take User Input 2
-        default: 'Input 2'
+        default: '0'
         required: true
       operator:
         type: choice
@@ -35,7 +33,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Display Input 1
-        run: echo "Input-1 is ${{ github.event.inputs.usrInput1 }}"
+        run: echo "Input-1 is  ${{ github.event.inputs.usrInput1 }}"
       - name: Display Input 2
         run: echo "Input-2 is ${{ github.event.inputs.usrInput2 }}"
       - name: Operator
@@ -55,18 +53,30 @@ jobs:
       - name: Multiply
         if: github.event.inputs.operator == 'multiply'
         run: |
-            echo $github.event.inputs.usrInput1 * $github.event.inputs.usrInput2
+            x = ${{ github.event.inputs.usrInput1 }}
+            y = ${{ github.event.inputs.usrInput2 }}
+            res = $( expr $x * $y )
+            echo "Result is : $res"
       - name: Addition
         if: github.event.inputs.operator == 'addition'
         run: |
-            echo $github.event.inputs.usrInput1 + $github.event.inputs.usrInput2
+            x = ${{ github.event.inputs.usrInput1 }}
+            y = ${{ github.event.inputs.usrInput2 }}
+            res = $( expr $x + $y )
+            echo "Result is : $res"
       - name: Substraction
         if: github.event.inputs.operator == 'substraction'
         run: |
-            echo $github.event.inputs.usrInput1 - $github.event.inputs.usrInput2
+            x = ${{ github.event.inputs.usrInput1 }}
+            y = ${{ github.event.inputs.usrInput2 }}
+            res = $( expr $x - $y )
+            echo "Result is : $res"
       - name: Division
         if: github.event.inputs.operator == 'division'
         run: |
-            echo $github.event.inputs.usrInput1 / $github.event.inputs.usrInput2
+            x = ${{ github.event.inputs.usrInput1 }}
+            y = ${{ github.event.inputs.usrInput2 }}
+            res = $( expr $x / $y )
+            echo "Result is : $res"
             
     
