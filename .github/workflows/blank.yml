@@ -42,7 +42,7 @@ jobs:
             x = ${{github.event.inputs.usrInput1}}
             y = ${{github.event.inputs.usrInput2}}
             res = $(expr $x \* $y)
-            echo "Result is : $res"
+            echo "Result is : $x"
       - name: Addition
         if: github.event.inputs.operator == 'addition'
         run: |
