@@ -53,29 +53,29 @@ jobs:
       - name: Multiply
         if: github.event.inputs.operator == 'multiply'
         run: |
-            x = ${{ github.event.inputs.usrInput1 }}
-            y = ${{ github.event.inputs.usrInput2 }}
+            x = github.event.inputs.usrInput1
+            y = github.event.inputs.usrInput2
             res = $(($x * $y))
             echo "Result is : $res"
       - name: Addition
         if: github.event.inputs.operator == 'addition'
         run: |
-            x = ${{ github.event.inputs.usrInput1 }}
-            y = ${{ github.event.inputs.usrInput2 }}
+            x = github.event.inputs.usrInput1
+            y = github.event.inputs.usrInput2
             res = $(($x + $y))
             echo "Result is : $res"
       - name: Substraction
         if: github.event.inputs.operator == 'substraction'
         run: |
-            x = ${{ github.event.inputs.usrInput1 }}
-            y = ${{ github.event.inputs.usrInput2 }}
+            x = github.event.inputs.usrInput1
+            y = github.event.inputs.usrInput2
             res = $(($x - $y))
             echo "Result is : $res"
       - name: Division
         if: github.event.inputs.operator == 'division'
         run: |
-            x = ${{ github.event.inputs.usrInput1 }}
-            y = ${{ github.event.inputs.usrInput2 }}
+            x = github.event.inputs.usrInput1
+            y = github.event.inputs.usrInput2
             res = $(($x / $y))
             echo "Result is: $res"
             
