@@ -1,4 +1,4 @@
-name: manual-input-Calculator-workflow
+name: Calculator
 
 on:
   workflow_dispatch:
