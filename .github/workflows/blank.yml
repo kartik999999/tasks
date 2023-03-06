@@ -52,14 +52,22 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Multiply
         if: github.event.inputs.operator == 'multiply'
-        run: ${{ github.event.inputs.usrInput1 * github.event.inputs.usrInput2 }}
+        run: |
+            m = $github.event.inputs.usrInput1 * $github.event.inputs.usrInput2
+            echo $m
       - name: Addition
         if: github.event.inputs.operator == 'addition'
-        run: ${{ github.event.inputs.usrInput1 + github.event.inputs.usrInput2 }}
+        run: |
+            m = $github.event.inputs.usrInput1 + $github.event.inputs.usrInput2
+            echo $a
       - name: Substraction
         if: github.event.inputs.operator == 'substraction'
-        run: ${{ github.event.inputs.usrInput1 - github.event.inputs.usrInput2 }}
+        run: |
+            s = $github.event.inputs.usrInput1 - $github.event.inputs.usrInput2
+            echo $s
       - name: Division
         if: github.event.inputs.operator == 'division'
-        run: ${{ github.event.inputs.usrInput1 / github.event.inputs.usrInput2 }}
+        run: |
+            d = $github.event.inputs.usrInput1 / $github.event.inputs.usrInput2
+            echo $d
     
