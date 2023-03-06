@@ -1,0 +1,65 @@
+name: manual-input-Calculator-workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      usrInput1:
+        description: Take User Input 1
+        default: 'Input 1'
+        required: true
+      usrInput2:
+        description: Take User Input 2
+        default: 'Input 2'
+        required: true
+      operator:
+        type: choice
+        description: Choose Operator
+        options:
+        - multiply
+        - addition
+        - substraction
+        - division
+
+jobs:
+  user-inputs:
+    on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Display Input 1
+        run: echo "Input-1 is ${{ github.event.inputs.usrInput1 }}"
+      - name: Display Input 2
+        run: echo "Input-2 is ${{ github.event.inputs.usrInput2 }}"
+      - name: Operator
+        run: echo "Operator is ${{ github.event.inputs.operator }}"
+  perform-operation:
+    needs: user-inputs
+    on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Multiply
+        if: github.event.inputs.operator == 'multiply'
+        run: echo "Result is ${{ github.event.inputs.usrInput1 }} * ${{ github.event.inputs.usrInput2 }}"
+      - name: Addition
+        if: github.event.inputs.operator == 'addition'
+        run: echo "Result is ${{ github.event.inputs.usrInput1 }} + ${{ github.event.inputs.usrInput2 }}"
+      - name: Substraction
+        if: github.event.inputs.operator == 'substraction'
+        run: echo "Result is ${{ github.event.inputs.usrInput1 }} - ${{ github.event.inputs.usrInput2 }}"
+      - name: Division
+        if: github.event.inputs.operator == 'division'
+        run: echo "Result is ${{ github.event.inputs.usrInput1 }} / ${{ github.event.inputs.usrInput2 }}"
+    
