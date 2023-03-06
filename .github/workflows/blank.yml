@@ -4,10 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       usrInput1:
+        type: integer
         description: Take User Input 1
         default: 'Input 1'
         required: true
       usrInput2:
+        type: integer
         description: Take User Input 2
         default: 'Input 2'
         required: true
