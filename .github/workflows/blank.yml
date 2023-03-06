@@ -53,21 +53,18 @@ jobs:
       - name: Multiply
         if: github.event.inputs.operator == 'multiply'
         run: |
-            m = $github.event.inputs.usrInput1 * $github.event.inputs.usrInput2
-            echo $m
+            echo $github.event.inputs.usrInput1 * $github.event.inputs.usrInput2
       - name: Addition
         if: github.event.inputs.operator == 'addition'
         run: |
-            m = $github.event.inputs.usrInput1 + $github.event.inputs.usrInput2
-            echo $a
+            echo $github.event.inputs.usrInput1 + $github.event.inputs.usrInput2
       - name: Substraction
         if: github.event.inputs.operator == 'substraction'
         run: |
-            s = $github.event.inputs.usrInput1 - $github.event.inputs.usrInput2
-            echo $s
+            echo $github.event.inputs.usrInput1 - $github.event.inputs.usrInput2
       - name: Division
         if: github.event.inputs.operator == 'division'
         run: |
-            d = $github.event.inputs.usrInput1 / $github.event.inputs.usrInput2
-            echo $d
+            echo $github.event.inputs.usrInput1 / $github.event.inputs.usrInput2
+            
     
