@@ -21,19 +21,8 @@ on:
         - division
 
 jobs:
-  user-inputs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Display Input 1
-        run: echo "Input-1 is  ${{ github.event.inputs.usrInput1 }}"
-      - name: Display Input 2
-        run: echo "Input-2 is ${{ github.event.inputs.usrInput2 }}"
-      - name: Operator
-        run: echo "Operator is ${{ github.event.inputs.operator }}"
   perform-operation:
-    needs: user-inputs
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - name: Multiply
