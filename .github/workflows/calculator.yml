@@ -15,10 +15,10 @@ on:
         type: choice
         description: Choose Operator
         options:
-        - multiply
-        - addition
-        - substraction
-        - division
+        - '*'
+        - '+'
+        - '-'
+        - '/'
 
 jobs:
   perform-operation:
@@ -29,24 +29,24 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Multiply
-        if: github.event.inputs.operator == 'multiply'
+        if: github.event.inputs.operator == '*'
         id: ${{ github.event.inputs.operator }}
-        run: echo "::set-output name=my_step_output::$(( github.event.inputs.usrInput1*github.event.inputs.usrInput2 ))"
+        run: $(( ${{github.event.inputs.usrInput1}} \* ${{github.event.inputs.usrInput2}} )) echo 'my_step_output={}' >> $GITHUB_OUTPUT ';'
              
       - name: Addition
-        if: github.event.inputs.operator == 'addition'
+        if: github.event.inputs.operator == '+'
         id: ${{ github.event.inputs.operator }}
-        run: echo "::set-output name=my_step_output::$(( ${{github.event.inputs.usrInput1}}+${{github.event.inputs.usrInput2}} ))"
+        run: $(( ${{github.event.inputs.usrInput1}} + ${{github.event.inputs.usrInput2}} )) echo 'my_step_output={}' >> $GITHUB_OUTPUT ';'
         
       - name: Substraction
-        if: github.event.inputs.operator == 'substraction'
+        if: github.event.inputs.operator == '-'
         id: ${{ github.event.inputs.operator }}
-        run: echo "::set-output name=my_step_output::$(( ${{github.event.inputs.usrInput1}}-${{github.event.inputs.usrInput2}} ))"
+        run: $(( ${{github.event.inputs.usrInput1}} - ${{github.event.inputs.usrInput2}} )) echo 'my_step_output={}' >> $GITHUB_OUTPUT ';
         
       - name: Division
-        if: github.event.inputs.operator == 'division'
+        if: github.event.inputs.operator == '/'
         id: ${{ github.event.inputs.operator }}
-        run: echo "::set-output name=my_step_output::$(( ${{github.event.inputs.usrInput1}}/${{github.event.inputs.usrInput2}} ))"
+        run: $(( ${{github.event.inputs.usrInput1}} / ${{github.event.inputs.usrInput2}} )) echo 'my_step_output={}' >> $GITHUB_OUTPUT ';
         
   output:
     needs: perform-operation
