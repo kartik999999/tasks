@@ -24,7 +24,7 @@ jobs:
   perform-operation:
     runs-on: windows-latest
     outputs:
-      my_output: ${{ steps.${{ github.event.inputs.operator }}.outputs.my_step_output }}
+      my_output: ${{ steps.(github.event.inputs.operator).outputs.my_step_output }}
     steps:
       - uses: actions/checkout@v3
       
