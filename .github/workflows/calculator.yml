@@ -49,6 +49,7 @@ jobs:
         run: echo "::set-output name=my_step_output::$(( ${{github.event.inputs.usrInput1}}/${{github.event.inputs.usrInput2}} ))"
         
   output:
+    needs: perform-operation
     runs-on: windows-latest
     steps:
       - name: output
