@@ -53,7 +53,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: output
-        run: echo "${{ needs.perform-operation.outputs.my_output }}"
+        run: echo "${{ needs.perform-operation.outputs.my_step_output }}"
     
         
     
