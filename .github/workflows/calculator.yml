@@ -31,7 +31,7 @@ jobs:
       - name: Multiply
         if: github.event.inputs.operator == '*'
         id: multi
-        run: $(( ${{github.event.inputs.usrInput1}} \* ${{github.event.inputs.usrInput2}} )) echo 'my_step_output={}' >> $GITHUB_OUTPUT ';'
+        run: $(( ${{github.event.inputs.usrInput1}} * ${{github.event.inputs.usrInput2}} )) echo 'my_step_output={}' >> $GITHUB_OUTPUT ';'
              
       - name: Addition
         if: github.event.inputs.operator == '+'
