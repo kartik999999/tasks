@@ -32,7 +32,7 @@ jobs:
         if: github.event.inputs.operator == '*'
         id: multi
         run: echo "::set-output name=my_step_output::$(( ${{github.event.inputs.usrInput1}} * ${{github.event.inputs.usrInput2}} ))"
-             
+        
       - name: Addition
         if: github.event.inputs.operator == '+'
         id: add
