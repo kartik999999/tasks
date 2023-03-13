@@ -27,12 +27,12 @@ jobs:
   perform_operation:
     runs-on: windows-latest
     outputs:
-      my_output: ${{ steps.output.outputs.my_output }}
+      my_output: ${{ steps.result-output.outputs.result }}
     steps:
       - run: |
           $result = ${{ inputs.usrInput1 }}${{ inputs.operator }}${{ inputs.usrInput2 }}
           echo result = $result >> $env:GITHUB_OUTPUT
-          id: output
+          id: result-output
         
   output:
     needs: perform_operation
