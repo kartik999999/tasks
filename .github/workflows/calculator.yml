@@ -31,7 +31,7 @@ jobs:
     steps:
       - run: |
           $result = ${{ inputs.usrInput1 }}${{ inputs.operator }}${{ inputs.usrInput2 }}
-          echo result=$result >> $env:GITHUB_OUTPUT
+          echo "result=$result" >> $env:GITHUB_OUTPUT
         id: result-output
         
   output:
