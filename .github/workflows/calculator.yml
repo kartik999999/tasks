@@ -25,21 +25,21 @@ on:
 
 jobs:
   perform_operation:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     outputs:
-      my_output: ${{ steps.result-output.outputs.result }}
+      result: ${{ steps.result-output.outputs.result }}
     steps:
       - run: |
           $result = ${{ inputs.usrInput1 }}${{ inputs.operator }}${{ inputs.usrInput2 }}
-          echo result = $result >> $env:GITHUB_OUTPUT
+          echo result=$result >> $env:GITHUB_OUTPUT
         id: result-output
         
   output:
     needs: perform_operation
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: output
-        run: echo "${{ needs.perform-operation.outputs.my_output }}"
+        run: echo "${{ needs.perform-operation.outputs.result }}"
     
         
     
