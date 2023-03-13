@@ -39,7 +39,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: output
-        run: echo "${{ needs.perform-operation.outputs.result }}"
+        run: echo '${{ needs.perform-operation.outputs.result }}'
     
         
     
