@@ -4,15 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       usrInput1:
+        type: number
         description: Take User Input 1
         default: '0'
         required: true
       usrInput2:
+        type: number
         description: Take User Input 2
         default: '0'
         required: true
       operator:
         type: choice
+        required: true
         description: Choose Operator
         options:
         - '*'
@@ -21,35 +24,18 @@ on:
         - '/'
 
 jobs:
-  perform-operation:
+  perform_operation:
     runs-on: windows-latest
     outputs:
-      my_output: ${{ steps.id.outputs.my_step_output }}
+      my_output: ${{ steps.output.outputs.my_output }}
     steps:
-      - uses: actions/checkout@v3
-      
-      - name: Multiply
-        if: github.event.inputs.operator == '*'
-        id: multi
-        run: echo "::set-output name=my_step_output::$(( ${{github.event.inputs.usrInput1}} * ${{github.event.inputs.usrInput2}} ))"
-        
-      - name: Addition
-        if: github.event.inputs.operator == '+'
-        id: add
-        run: echo "::set-output name=my_step_output::$(( ${{github.event.inputs.usrInput1}} + ${{github.event.inputs.usrInput2}} ))"
-        
-      - name: Substraction
-        if: github.event.inputs.operator == '-'
-        id: sub
-        run: echo "::set-output name=my_step_output::$(( ${{github.event.inputs.usrInput1}} - ${{github.event.inputs.usrInput2}} ))"
-        
-      - name: Division
-        if: github.event.inputs.operator == '/'
-        id: div
-        run: echo "::set-output name=my_step_output::$(( ${{github.event.inputs.usrInput1}} / ${{github.event.inputs.usrInput2}} ))"
+      - run: |
+          $result = ${{ inputs.usrInput1 }}${{ inputs.operator }}${{ inputs.usrInput2 }}
+          echo result = $result >> $env:GITHUB_OUTPUT
+          id: output
         
   output:
-    needs: perform-operation
+    needs: perform_operation
     runs-on: windows-latest
     steps:
       - name: output
